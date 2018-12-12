@@ -10,7 +10,8 @@ public class ShortestWayFinder {
 
     public static List<Vertex> find(Vertex vertex, int endId) {
 
-        if (Objects.equals(vertex.getId(), endId)) return getPath(vertex);
+        if (Objects.equals(vertex.getId(), endId))
+            return getPath(vertex);
 
         for (Vertex relatedVertex : vertex.getRelations()) {
             int generalDistance = vertex.getGeneralDistance() + relatedVertex.calculateDistance(vertex);
