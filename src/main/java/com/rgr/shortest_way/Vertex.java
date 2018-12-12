@@ -1,5 +1,6 @@
 package com.rgr.shortest_way;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,10 @@ public class Vertex {
 
     }
 
+    public void paint(Graphics2D g2d) {
+
+    }
+
     static List<Vertex> findShortestWay(Vertex vertex, int endId) {
 
         if (Objects.equals(vertex.id, endId)) return getPath(vertex);
@@ -96,6 +101,8 @@ public class Vertex {
                 relatedVertex.generalDistance = generalDistance;
                 relatedVertex.parent = vertex;
                 return findShortestWay(relatedVertex, endId);
+
+
             }
         }
         return new ArrayList<>();
