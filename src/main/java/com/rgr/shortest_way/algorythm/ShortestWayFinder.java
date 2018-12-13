@@ -21,10 +21,9 @@ public class ShortestWayFinder {
 
         for (Vertex relatedVertex : vertex.getRelations()) {
             int generalDistance = vertex.getGeneralDistance() + relatedVertex.calculateDistance(vertex);
-//            if (path(vertex).contains(relatedVertex)) continue;
-//            if (vertex.getParent() == relatedVertex) continue;
-
             if (relatedVertex.getGeneralDistance() == 0 || generalDistance < relatedVertex.getGeneralDistance()) {
+                if (path(vertex.getParent()).contains(relatedVertex))
+                    continue;
                 relatedVertex.setGeneralDistance(generalDistance);
                 relatedVertex.setParent(vertex);
                 find(relatedVertex, endId);

@@ -8,16 +8,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static com.rgr.shortest_way.algorythm.ShortestWayFinder.path;
 
 public class Window extends JFrame {
 
     public static final int WIDTH = 600;
     public static final int HEIGHT = 600;
 
-    private static final int SIZE = 700;
+    private static final int SIZE = 500;
 
     private List<Vertex> vertices;
 
@@ -68,16 +69,6 @@ public class Window extends JFrame {
         wayFinder.find(start, end.getId());
 
         return path(wayFinder.getVertex());
-    }
-
-    private List<Vertex> path(Vertex vertex) {
-        List<Vertex> path = new ArrayList<>();
-        Vertex head = vertex;
-        while (Objects.nonNull(head)) {
-            path.add(head);
-            head = head.getParent();
-        }
-        return path;
     }
 
     private void cleanWindow(Graphics2D g2d) {

@@ -8,8 +8,7 @@ public class VerticesFactory {
 
     private List<Vertex> vertices;
 
-    private VerticesFactory() {
-    }
+    private VerticesFactory() {}
 
     public static VerticesFactory newInstance() {
         return new VerticesFactory();
@@ -54,13 +53,3 @@ public class VerticesFactory {
     }
 
 }
-//        int radiusForRelation = 0;
-//
-//        for (Vertex potentialRelation : vertices) {
-//            radiusForRelation += vertex.calculateDistance(potentialRelation);
-//        }
-//
-//        radiusForRelation /= vertices.size();
-//
-//        int radius = radiusForRelation < 0 ? radiusForRelation * -1 : radiusForRelation;
-//        vertex.setRadiusOfRelation(radius);

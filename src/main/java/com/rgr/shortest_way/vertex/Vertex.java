@@ -53,7 +53,6 @@ public class Vertex {
 
     public void addRelation(Vertex vertex) {
         if (Objects.equals(vertex, this) || Objects.isNull(vertex)) return;
-        if (vertex.relations.contains(this)) return;
         relations.add(vertex);
     }
 
@@ -66,9 +65,8 @@ public class Vertex {
     }
 
     public void setParent(Vertex parent) {
-        if (Objects.equals(this, parent))
+        if (Objects.equals(this, parent) || Objects.equals(this.parent, parent))
             return;
-//        if (ShortestWayFinder.path(this.parent).contains(parent)) return;
         this.parent = parent;
     }
 
