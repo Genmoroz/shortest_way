@@ -60,10 +60,10 @@ public class Window extends JFrame {
         vertices = VerticesFactory.newInstance().createVertices(SIZE, WIDTH);
 
         Vertex start = vertices.get(0);
-        start.setState(Color.GREEN);
+        start.setColor(Color.GREEN);
         Vertex end = vertices.get(vertices.size() - 1);
 
-        end.setState(Color.BLUE);
+        end.setColor(Color.BLUE);
 
         ShortestWayFinder wayFinder = new ShortestWayFinder();
         wayFinder.find(start, end.getId());

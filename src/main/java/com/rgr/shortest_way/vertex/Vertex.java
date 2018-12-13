@@ -21,6 +21,7 @@ public class Vertex {
     private int x;
     private int y;
 
+    @Setter
     private Color color = Color.BLACK;
 
     private List<Vertex> relations = new ArrayList<>();
@@ -58,10 +59,6 @@ public class Vertex {
 
     public Integer calculateDistance(Vertex vertex) {
         return (int) Point2D.distance(vertex.x, vertex.y, x, y);
-    }
-
-    public void setState(Color color) {
-        this.color = color;
     }
 
     public void setParent(Vertex parent) {
