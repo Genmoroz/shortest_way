@@ -12,13 +12,16 @@ import java.util.Objects;
 @Getter
 public class Vertex {
 
-    @Setter
     private Vertex parent;
     @Setter
     private int generalDistance;
+    @Setter
+    private int radiusOfRelation;
     private int id;
     private int x;
     private int y;
+
+    private Color color = Color.BLACK;
 
     private List<Vertex> relations = new ArrayList<>();
 
@@ -29,16 +32,44 @@ public class Vertex {
     }
 
     public void paint(Graphics2D g2d) {
-        g2d.drawOval(x, y, 1, 1);
+
+        g2d.setStroke(new BasicStroke(0.1f));
+        g2d.setColor(new Color(47, 40, 40));
+        for (Vertex vertex : relations) {
+            g2d.drawLine(x, y, vertex.x, vertex.y);
+        }
+        g2d.setColor(color);
+        g2d.fillOval(x - 3, y - 3, 6, 6);
+    }
+
+    public void paintWayToParent(Graphics2D g2d) {
+        if (Objects.isNull(parent))
+            return;
+        g2d.setStroke(new BasicStroke(2.1f));
+        g2d.setColor(Color.RED);
+        g2d.drawLine(x, y, parent.x, parent.y);
+        parent.paintWayToParent(g2d);
     }
 
     public void addRelation(Vertex vertex) {
-        if (Objects.equals(vertex, this) || Objects.isNull(vertex) || relations.contains(vertex)) return;
+        if (Objects.equals(vertex, this) || Objects.isNull(vertex)) return;
+        if (vertex.relations.contains(this)) return;
         relations.add(vertex);
     }
 
     public Integer calculateDistance(Vertex vertex) {
         return (int) Point2D.distance(vertex.x, vertex.y, x, y);
+    }
+
+    public void setState(Color color) {
+        this.color = color;
+    }
+
+    public void setParent(Vertex parent) {
+        if (Objects.equals(this, parent))
+            return;
+//        if (ShortestWayFinder.path(this.parent).contains(parent)) return;
+        this.parent = parent;
     }
 
     @Override
