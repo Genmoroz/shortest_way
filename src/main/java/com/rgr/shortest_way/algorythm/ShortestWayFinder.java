@@ -10,9 +10,9 @@ import java.util.Objects;
 public class ShortestWayFinder {
 
     @Getter
-    private Vertex vertex = null;
+    private volatile Vertex vertex = null;
 
-    public void find(Vertex vertex, int endId) {
+    public synchronized void find(Vertex vertex, int endId) {
 
         if (Objects.equals(vertex.getId(), endId)) {
             this.vertex = vertex;
@@ -31,7 +31,7 @@ public class ShortestWayFinder {
         }
     }
 
-    public static List<Vertex> path(Vertex vertex) {
+    public synchronized static List<Vertex> path(Vertex vertex) {
         List<Vertex> path = new ArrayList<>();
         Vertex head = vertex;
         while (Objects.nonNull(head)) {
